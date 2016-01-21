@@ -8,15 +8,15 @@ Run with:
 
 Install `twisted` with:
 
-    pip install twisted
+    python3.5 -m pip install twisted
 
 Install `pynacl` with:
 
-    pip install pynacl
+    python3.5 -m pip install pynacl
 
 Install `pyblake2` with:
 
-    pip install pyblake2
+    python3.5 -m pip install pyblake2
 
 Patch `libg.so` with:
 
