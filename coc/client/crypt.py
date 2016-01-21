@@ -4,9 +4,6 @@ from coc.crypt import CoCCrypt, CoCNonce
 
 class CoCClientCrypt(CoCCrypt):
 
-    factory = None
-    server = None
-
     def __init__(self, factory):
         self._factory = factory
         self.keypair()

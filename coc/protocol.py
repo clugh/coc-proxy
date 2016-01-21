@@ -30,7 +30,9 @@ class CoCProtocol(CoCPacketReceiver):
 
     _peer = None
 
-    session_key = None
+    factory = None
+    server = None
+    client = None
 
     def __init__(self, factory):
         self._factory = factory

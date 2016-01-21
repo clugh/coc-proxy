@@ -4,8 +4,6 @@ from coc.crypt import CoCCrypt, CoCNonce
 
 class CoCServerCrypt(CoCCrypt):
 
-    client = None
-
     def __init__(self, factory):
         self._factory = factory
         self._sk = PrivateKey(bytes.fromhex("1891d401fadb51d25d3a9174d472a9f691a45b974285d47729c45c6538070d85"))

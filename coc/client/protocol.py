@@ -4,8 +4,6 @@ from coc.client.crypt import CoCClientCrypt
 
 class CoCClientProtocol(CoCClientCrypt, CoCProtocol):
 
-    server = None
-
     def __init__(self, factory):
         super(CoCClientProtocol, self).__init__(factory)
         self.factory.client = self
