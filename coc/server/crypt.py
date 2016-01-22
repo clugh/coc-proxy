@@ -7,21 +7,19 @@ class CoCServerCrypt(CoCCrypt):
 
     def __init__(self, factory):
         self._factory = factory
-        self._sk = PrivateKey(bytes.fromhex("1891d401fadb51d25d3a9174d472a9f691a45b974285d47729c45c6538070d85"))
-        self._pk = self._sk.public_key
-        self._clientkey = None
+        self._serverkey = PublicKey(bytes.fromhex("47d1416f3cf982d2b510cab32ecc4f1a04971345446cb1af326f304f63da6264"))
 
     @property
     def serverkey(self):
-        return bytes(self._pk)
+        return bytes(self._serverkey)
 
     @property
     def clientkey(self):
-        return bytes(self._clientkey)
+        return bytes(self._pk)
 
     @clientkey.setter
     def clientkey(self, pk):
-        self._clientkey = PublicKey(pk)
+        self._pk = PublicKey(pk)
 
     def decryptPacket(self, packet):
         messageid = int.from_bytes(packet[:2], byteorder="big")

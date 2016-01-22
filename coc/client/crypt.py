@@ -6,9 +6,7 @@ class CoCClientCrypt(CoCCrypt):
 
     def __init__(self, factory):
         self._factory = factory
-        self.keypair()
         self._serverkey = PublicKey(bytes.fromhex("47d1416f3cf982d2b510cab32ecc4f1a04971345446cb1af326f304f63da6264"))
-        self.beforenm(self.serverkey)
 
     @property
     def serverkey(self):
@@ -17,6 +15,10 @@ class CoCClientCrypt(CoCCrypt):
     @property
     def clientkey(self):
         return bytes(self._pk)
+
+    @clientkey.setter
+    def clientkey(self, pk):
+        self._pk = PublicKey(pk)
 
     def decryptPacket(self, packet):
         messageid = int.from_bytes(packet[:2], byteorder="big")
