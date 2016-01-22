@@ -23,8 +23,7 @@ class CoCClientCrypt(CoCCrypt):
         unknown = int.from_bytes(packet[5:7], byteorder="big")
         payload = packet[7:]
         if messageid == 20100:
-            self.session_key = packet[-24:]
-            self.server.session_key = self.session_key
+            self.session_key = self.server.session_key = packet[-24:]
             return messageid, unknown, payload
         elif messageid == 20104:
             nonce = CoCNonce(nonce=self.encrypt_nonce, clientkey=self.clientkey, serverkey=self.serverkey)
@@ -33,11 +32,10 @@ class CoCClientCrypt(CoCCrypt):
                 message = self.decrypt(ciphertext, bytes(nonce))
             except ValueError:
                 print("Failed to decrypt the message (client, {}).".format(messageid))
-                self.factory.server.loseConnection()
+                self.server.loseConnection()
                 return False
             else:
-                self.decrypt_nonce = message[:24]
-                self.server.encrypt_nonce = self.decrypt_nonce
+                self.decrypt_nonce = self.server.encrypt_nonce = message[:24]
                 self.k = message[24:56]
                 return messageid, unknown, message[56:]
         else:

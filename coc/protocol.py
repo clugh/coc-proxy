@@ -36,8 +36,6 @@ class CoCProtocol(CoCPacketReceiver):
 
     def __init__(self, factory):
         self._factory = factory
-        self.factory.server = None
-        self.factory.client = None
 
     @property
     def factory(self):
@@ -62,9 +60,11 @@ class CoCProtocol(CoCPacketReceiver):
         raise NotImplementedError
 
     def sendPacket(self, messageid, unknown, payload):
-        (messageid, unknown, payload) = self.encryptPacket(messageid, unknown, payload)
-        packet = (messageid.to_bytes(2, byteorder="big") + len(payload).to_bytes(3, byteorder="big") + unknown.to_bytes(2, byteorder="big") + payload)
-        self.transport.write(packet)
+        encrypted = self.encryptPacket(messageid, unknown, payload)
+        if encrypted:
+            (messageid, unknown, payload) = encrypted
+            packet = (messageid.to_bytes(2, byteorder="big") + len(payload).to_bytes(3, byteorder="big") + unknown.to_bytes(2, byteorder="big") + payload)
+            self.transport.write(packet)
 
     def encryptPacket(self, messageid, unknown, payload):
         raise NotImplementedError

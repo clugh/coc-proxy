@@ -1,4 +1,5 @@
 from nacl.public import PrivateKey, PublicKey
+from nacl.exceptions import CryptoError
 from coc.crypt import CoCCrypt, CoCNonce
 
 
@@ -29,19 +30,17 @@ class CoCServerCrypt(CoCCrypt):
         if messageid == 10100:
             return messageid, unknown, payload
         elif messageid == 10101:
-            self.clientkey = payload[:32]
-            self.beforenm(self.clientkey)
+            self.clientkey = self.client.clientkey = payload[:32]
             nonce = CoCNonce(clientkey=self.clientkey, serverkey=self.serverkey)
             ciphertext = payload[32:]
             try:
                 message = self.decrypt(ciphertext, nonce)
-            except ValueError:
+            except CryptoError:
                 print("Failed to decrypt the message (server, {}).".format(messageid))
                 self.transport.loseConnection()
                 return False
             else:
-                self.decrypt_nonce = message[24:48]
-                self.client.encrypt_nonce = self.decrypt_nonce
+                self.decrypt_nonce = self.client.encrypt_nonce = message[24:48]
                 return messageid, unknown, message[48:]
         else:
             ciphertext = payload

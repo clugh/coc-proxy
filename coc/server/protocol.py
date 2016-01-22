@@ -6,6 +6,8 @@ from coc.client.factory import CoCClientFactory
 
 class CoCServerProtocol(CoCServerCrypt, CoCProtocol):
 
+    client = None
+
     def __init__(self, factory):
         super(CoCServerProtocol, self).__init__(factory)
         self.factory.server = self

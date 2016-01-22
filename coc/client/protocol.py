@@ -6,7 +6,6 @@ class CoCClientProtocol(CoCClientCrypt, CoCProtocol):
 
     def __init__(self, factory):
         super(CoCClientProtocol, self).__init__(factory)
-        self.factory.client = self
         self.factory.server.client = self
         self.server = self.factory.server
 
