@@ -30,7 +30,8 @@ class CoCServerCrypt(CoCCrypt):
         if messageid == 10100:
             return messageid, unknown, payload
         elif messageid == 10101:
-            self.clientkey = self.client.clientkey = payload[:32]
+            self.clientkey = payload[:32]
+            self.beforenm(self.clientkey)
             nonce = CoCNonce(clientkey=self.clientkey, serverkey=self.serverkey)
             ciphertext = payload[32:]
             try:
