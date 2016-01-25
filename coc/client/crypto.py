@@ -1,8 +1,8 @@
 from nacl.public import PublicKey
-from coc.crypt import CoCCrypt, CoCNonce
+from coc.crypto import CoCCrypto, CoCNonce
 
 
-class CoCClientCrypt(CoCCrypt):
+class CoCClientCrypto(CoCCrypto):
 
     def __init__(self, factory):
         self._factory = factory

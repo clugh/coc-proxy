@@ -3,7 +3,7 @@ import nacl.utils
 from nacl.public import Box, PrivateKey, PublicKey
 
 
-class CoCCrypt:
+class CoCCrypto:
     _sk = None
     _pk = None
     _k = None

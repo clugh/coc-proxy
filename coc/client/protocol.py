@@ -1,8 +1,8 @@
 from coc.protocol import CoCProtocol
-from coc.client.crypt import CoCClientCrypt
+from coc.client.crypto import CoCClientCrypto
 
 
-class CoCClientProtocol(CoCClientCrypt, CoCProtocol):
+class CoCClientProtocol(CoCClientCrypto, CoCProtocol):
 
     def __init__(self, factory):
         super(CoCClientProtocol, self).__init__(factory)

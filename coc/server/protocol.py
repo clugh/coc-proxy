@@ -1,10 +1,10 @@
 from twisted.internet import reactor
 from coc.protocol import CoCProtocol
-from coc.server.crypt import CoCServerCrypt
+from coc.server.crypto import CoCServerCrypto
 from coc.client.factory import CoCClientFactory
 
 
-class CoCServerProtocol(CoCServerCrypt, CoCProtocol):
+class CoCServerProtocol(CoCServerCrypto, CoCProtocol):
 
     client = None
 

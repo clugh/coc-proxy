@@ -1,9 +1,9 @@
 from nacl.public import PrivateKey, PublicKey
 from nacl.exceptions import CryptoError
-from coc.crypt import CoCCrypt, CoCNonce
+from coc.crypto import CoCCrypto, CoCNonce
 
 
-class CoCServerCrypt(CoCCrypt):
+class CoCServerCrypto(CoCCrypto):
 
     def __init__(self, factory):
         self._factory = factory
