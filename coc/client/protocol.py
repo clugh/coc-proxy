@@ -8,13 +8,14 @@ class CoCClientProtocol(CoCClientCrypto, CoCProtocol):
         super(CoCClientProtocol, self).__init__(factory)
         self.factory.server.client = self
         self.server = self.factory.server
+        self.decoder = self.server.decoder
 
     def connectionMade(self):
         super(CoCClientProtocol, self).connectionMade()
         print("connected to {}:{} ...".format(self.peer.host, self.peer.port))
 
     def packetDecrypted(self, messageid, unknown, payload):
-        print(messageid, (messageid.to_bytes(2, byteorder="big") + len(payload).to_bytes(3, byteorder="big") + unknown.to_bytes(2, byteorder="big") + payload).hex())
+        self.decodePacket(messageid, unknown, payload)
         self.server.sendPacket(messageid, unknown, payload)
 
     def connectionLost(self, reason):

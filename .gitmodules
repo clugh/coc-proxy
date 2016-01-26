@@ -1,0 +1,3 @@
+[submodule "coc/message"]
+	path = coc/message
+	url = git@github.com:clugh/coc-messages-python.git

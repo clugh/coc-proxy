@@ -53,6 +53,15 @@ class CoCProtocol(CoCPacketReceiver):
         if decrypted:
             self.packetDecrypted(*decrypted)
 
+    def decodePacket(self, messageid, unknown, payload):
+        try:
+            decoded = self.decoder.decode(messageid, unknown, payload)
+        except (KeyError, IndexError, NotImplementedError) as e:
+            print(messageid, "Error:", e)
+            print(messageid, (messageid.to_bytes(2, byteorder="big") + len(payload).to_bytes(3, byteorder="big") + unknown.to_bytes(2, byteorder="big") + payload).hex())
+        else:
+            self.decoder.dump(decoded)
+
     def decryptPacket(self, packet):
         raise NotImplementedError
 
