@@ -49,7 +49,7 @@ class CoCServerCrypto(CoCCrypto):
             return messageid, unknown, message
 
     def encryptPacket(self, messageid, unknown, payload):
-        if messageid == 20100:
+        if messageid in {20100, 20103}:
             return messageid, unknown, payload
         elif messageid == 20104:
             nonce = CoCNonce(nonce=self.decrypt_nonce, clientkey=self.clientkey, serverkey=self.serverkey)
