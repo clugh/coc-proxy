@@ -34,4 +34,4 @@ See the [Key Offsets](https://github.com/clugh/coc-proxy/wiki/Key-Offsets) wiki 
 
 ###Routing Packets
 
-This topic is expansive and is outside the scope of this document.  See the [Routing Packets](https://github.com/clugh/coc-proxy/wiki/Routing-Packets) wiki page on the for more information.
+This topic is expansive and is outside the scope of this document.  See the [Routing Packets](https://github.com/clugh/coc-proxy/wiki/Routing-Packets) wiki page for more information.
