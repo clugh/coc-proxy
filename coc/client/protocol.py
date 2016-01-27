@@ -9,6 +9,7 @@ class CoCClientProtocol(CoCClientCrypto, CoCProtocol):
         self.factory.server.client = self
         self.server = self.factory.server
         self.decoder = self.server.decoder
+        self.encoder = self.server.encoder
 
     def connectionMade(self):
         super(CoCClientProtocol, self).connectionMade()

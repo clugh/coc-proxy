@@ -12,6 +12,7 @@ class CoCServerProtocol(CoCServerCrypto, CoCProtocol):
         super(CoCServerProtocol, self).__init__(factory)
         self.factory.server = self
         self.decoder = self.factory.decoder
+        self.encoder = self.factory.encoder
 
     def connectionMade(self):
         super(CoCServerProtocol, self).connectionMade()
