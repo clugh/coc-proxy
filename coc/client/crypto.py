@@ -22,11 +22,11 @@ class CoCClientCrypto(CoCCrypto):
         messageid = int.from_bytes(packet[:2], byteorder="big")
         unknown = int.from_bytes(packet[5:7], byteorder="big")
         payload = packet[7:]
-        if messageid in {20100, 20103}:
+        if messageid == 20100 or (messageid == 20103 and not self.session_key):
             if messageid == 20100:
                 self.session_key = self.server.session_key = packet[-24:]
             return messageid, unknown, payload
-        elif messageid == 20104:
+        elif messageid in {20103, 20104}:
             nonce = CoCNonce(nonce=self.encrypt_nonce, clientkey=self.clientkey, serverkey=self.serverkey)
             ciphertext = payload
             try:
