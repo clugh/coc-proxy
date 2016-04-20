@@ -1,3 +1,5 @@
+**Warning:** With version 8.212.12, Supercell has started banning accounts for the use of third party software. I am unsure what, if any, checks are in place that might reveal the use of this proxy, so continue use at your own risk.  See [here](http://supercell.com/en/safe-and-fair-play/) for more info.
+
 # coc-proxy
 
 Run with:
